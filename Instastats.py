@@ -10,12 +10,16 @@ L.login(logins['username'], logins['password'])
 
 #Loads profile
 while userquery != "quit":
+    follower_list = []
+    following_list = []
+
     userquery = input("Enter the instagram username you'd like to search: ")
 
     profile = instaloader.Profile.from_username(L.context, userquery)
 
     #Returns followers
     followers = profile.get_followers()
-
     for follower in followers:
-        print(follower.username)
+        follower_list.append(follower.username)
+    print(follower_list)
+    
