@@ -1,5 +1,5 @@
 import instaloader
-
+ 
 #Creates instance of instaloader
 L = instaloader.Instaloader()
 username = input("Enter your instagram username: ")
