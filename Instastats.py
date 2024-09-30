@@ -22,4 +22,8 @@ while userquery != "quit":
     for follower in followers:
         follower_list.append(follower.username)
     print(follower_list)
-    
+
+    followings = profile.get_followees()
+    for following in followings:
+        following_list.append(following.username)
+    print(following_list)
