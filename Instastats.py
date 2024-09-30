@@ -1,11 +1,12 @@
 import instaloader
-from config import logins
 
 #Creates instance of instaloader
 L = instaloader.Instaloader()
+username = input("Enter your instagram username: ")
+password = input("Enter your instagram password: ")
 
 #(Optional) Logs in with credentials, might be required if account is private
-L.login(logins['username'], logins['password'])
+L.login(username, password)
 
 #Loads profile
 while True:
@@ -13,6 +14,8 @@ while True:
     following_list = []
 
     userquery = input("Enter the instagram username you'd like to search: ")
+    print("")
+
     if userquery == "quit":
         break
 
@@ -39,3 +42,4 @@ while True:
     if badfriends == []:
         badfriends.append("None")
     print(badfriends)
+    print("")
