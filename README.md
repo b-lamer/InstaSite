@@ -12,4 +12,4 @@ These will also be made into a website with HTML format eventually, but the base
 
 ## Version 2
 ### Prerequisites
-- This version requires you to have an instagram business or creator account in order to use their official API
+- Version 2 got scrapped because it would not at all work with what I'm trying to do

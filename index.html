@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Follower Checker</title>
+</head>
+<body>
+    <h1>Check Instagram Followers</h1>
+    <input type="text" id="username" placeholder="Enter Instagram username">
+    <button id="submitBtn">Check</button>
+    <h3>These users are not following back:</h3>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("submitBtn").addEventListener("click", function() {
+            const username = document.getElementById("username").value;
+
+            fetch('/instagram', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: username }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById("result");
+                resultDiv.innerHTML = data.badfriends.join(', ');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
