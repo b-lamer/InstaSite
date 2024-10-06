@@ -1,19 +1,21 @@
+from flask import Flask, request, jsonify, render_template
 import instaloader
-from flask import Flask, request, jsonify
+from config import logins
 
 app = Flask(__name__)
-#Creates instance of instaloader
+
+# Creates instance of instaloader
 L = instaloader.Instaloader()
 
-username = input("Enter your instagram username: ")
-password = input("Enter your instagram password: ")
+# (Optional) Logs in with credentials
+L.login(logins['username'], logins['password'])
 
-#(Optional) Logs in with credentials, might be required if account is private
-L.login(username, password)
+@app.route('/')
+def index():
+    return render_template('index.html')  # Renders the HTML file
 
 @app.route('/instagram', methods=['POST'])
-#Loads profile
-def checkfollowers():
+def check_followers():
     userquery = request.json.get('username')
     if userquery:
         follower_list = []
@@ -21,21 +23,22 @@ def checkfollowers():
 
         profile = instaloader.Profile.from_username(L.context, userquery)
 
-        #Returns followers
+        # Returns followers
         followers = profile.get_followers()
         for follower in followers:
             follower_list.append(follower.username)
 
+        # Returns followees
         followings = profile.get_followees()
         for following in followings:
             following_list.append(following.username)
 
-        print("These users are not following " + userquery + " back: ")
         badfriends = [following for following in following_list if following not in follower_list]
-        if badfriends == []:
+        if not badfriends:
             badfriends.append("None")
-        return jsonify({"Bad friends: ": badfriends})
-    return jsonify({"error": "No username provided"}), 400
+
+        return jsonify({"badfriends": badfriends})
+    return jsonify({"error": "Invalid username"}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)

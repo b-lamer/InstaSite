@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Follower Checker</title>
+</head>
+<body>
+    <h1>Check Instagram Followers</h1>
+    
+    <!-- Input field for Instagram username -->
+    <input type="text" id="username" placeholder="Enter Instagram username">
+    <button id="submitBtn">Check</button>
+
+    <!-- Section to display the results -->
+    <h3>These users are not following back:</h3>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("submitBtn").addEventListener("click", function() {
+            const username = document.getElementById("username").value;
+            
+            // Display a loading message while waiting for the response
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Loading...";
+
+            // Fetch request to the Flask backend
+            fetch('/instagram', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: username }),  // sending the username
+            })
+            .then(response => response.json())  // Parse the JSON response
+            .then(data => {
+                // Handle the response and display results
+                if (data.badfriends) {
+                    // Display the list of "badfriends" (users not following back)
+                    resultDiv.innerHTML = data.badfriends.join(', ');
+                } else if (data.error) {
+                    // Display an error message if there's a problem
+                    resultDiv.innerHTML = "Error: " + data.error;
+                }
+            })
+            .catch(error => {
+                // Handle any network errors
+                resultDiv.innerHTML = "An error occurred. Please try again.";
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
