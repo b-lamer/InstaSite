@@ -4,17 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Follower Checker</title>
+    <style>
+        /* Style for centering the content */
+        body {
+            display: flex;
+            justify-content: center;      /* Center horizontally */
+            align-items: center;          /* Center vertically */
+            height: 100vh;                /* Full viewport height */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        /* Container to hold the content */
+        .container {
+            text-align: center;           /* Center text inside the container */
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling the input and button */
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Result box styling */
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Check Instagram Followers</h1>
-    
-    <!-- Input field for Instagram username -->
-    <input type="text" id="username" placeholder="Enter Instagram username">
-    <button id="submitBtn">Check</button>
+    <div class="container">
+        <h1>Check Instagram Followers</h1>
+        
+        <!-- Input field for Instagram username -->
+        <input type="text" id="username" placeholder="Enter Instagram username">
+        <br>
+        <button id="submitBtn">Check</button>
 
-    <!-- Section to display the results -->
-    <h3>These users are not following back:</h3>
-    <div id="result"></div>
+        <!-- Section to display the results -->
+        <h3>These users are not following back:</h3>
+        <div id="result"></div>
+    </div>
 
     <script>
         document.getElementById("submitBtn").addEventListener("click", function() {
