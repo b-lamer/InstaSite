@@ -12,9 +12,10 @@ L.login(logins['username'], logins['password'])
 
 @app.route('/')
 def index():
-    return render_template('index.html')  # Renders the HTML file
+    return render_template('index.html')  # Hosts the HTML file on a local Flask server
 
 @app.route('/instagram', methods=['POST'])
+
 def check_followers():
     userquery = request.json.get('username')
     if userquery:
@@ -28,11 +29,12 @@ def check_followers():
         for follower in followers:
             follower_list.append(follower.username)
 
-        # Returns followees
+        # Returns people the user is following
         followings = profile.get_followees()
         for following in followings:
             following_list.append(following.username)
 
+        # Checks who is not following the user back and adds them to a list
         badfriends = [following for following in following_list if following not in follower_list]
         if not badfriends:
             badfriends.append("None")
