@@ -12,4 +12,4 @@ These will also be made into a website with HTML format eventually, but the base
 
 ## Version 2
 ### Prerequisites
-- Version 2 got scrapped because it would not at all work with what I'm trying to do
+- Version 2 got scrapped due to strict Instagram constraints, even when it comes to users obtaining their own account information. 
