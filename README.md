@@ -1,6 +1,6 @@
 ## General Info
-This is a program that will locally host a site and give you the ip when ran. At the moment, it will retrieve your credentials from the config.py file and log in using them.
-This is to allow the bot to see others followers. When inputting a username into the field on the site, it will return a list of who is not following that user back. 
+This is a program that will locally host a site and give you the ip when ran. It will require you to log in, as un-logged in users can not view following/followers.
+This is to allow the program to see others followers. When inputting a username into the field on the site, it will return a list of who is not following that user back. 
 
 ## Prerequisites:
 - You will need to install [python](https://www.python.org/downloads/) (Make sure you check "Add python.exe to PATH")
